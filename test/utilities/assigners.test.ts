@@ -1,7 +1,7 @@
 
 import {Assigner, Assigners} from '../../src/utilities/assigners'
 
-const runs = 1000;
+const runs = 100;
 
 function testAssigner(name: string, assigner: Assigner) {
     describe(`Assigner: ${name}`, () => {
@@ -69,13 +69,13 @@ function testAssigner(name: string, assigner: Assigner) {
             });
         }, runs);
         generateDoubleInputs([], integer(1, 100), integer(1,100), (tasks, executors) => {
-            let assigned: number[] = Array(executors).fill(0);
-            for (let period: number = 0; period < 10000; period ++) {
-                assigner(tasks, executors, period).forEach(e => assigned[e]++);
-            }
-            let min: number = Math.min(...assigned);
-            let max: number = Math.max(...assigned);
             describe(`Is fair across the first 10k periods (${tasks}, ${executors}):`, () => {
+                let assigned: number[] = Array(executors).fill(0);
+                for (let period: number = 0; period < 10000; period ++) {
+                    assigner(tasks, executors, period).forEach(e => assigned[e]++);
+                }
+                let min: number = Math.min(...assigned);
+                let max: number = Math.max(...assigned);
                 it("Assigns the most responsible person no more than 10% more than the least assigned.", () => {
                     expect(max/min).toBeLessThan(1.1);
                 });
