@@ -15,7 +15,7 @@ describe('validate', () => {
         });
     }, runs)
 
-    BinaryTest([], integer(0,100), randomString(5,10), (passing, message) => {
+    BinaryTest([[0, "no-passing"]], integer(0,100), randomString(5,10), (passing, message) => {
         it(`throws first failure ([${passing}, '${message}'])`, () => {
             let passingValidators: Validator<any>[] = [...Array(passing)].map(() => (_: any) => {});
             let failure: Validator<any> = (_: any) => { throw message };
