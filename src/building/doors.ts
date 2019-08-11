@@ -24,8 +24,8 @@ export enum Door {
     CONFIRM = "CONFIRM",
     // Cancel a risky action
     CANCEL = "CANCEL",
-    // System sees success in a Hallway task
+    // System sees success in a Closet task
     SUCCESS = "SUCCESS",
-    // System sees failure in a Hallway task
+    // System sees failure in a Closet task
     FAILURE = "FAILURE",
 }

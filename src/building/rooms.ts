@@ -12,7 +12,7 @@ export enum BaseRoom {
     SEE_CALENDAR = "SEE_CALENDAR",
 }
 
-export enum HallwayType {
+export enum ClosetType {
     //This is a transient state, to freeze the UI while state is persisted to the store
     SAVE_WAIT = "SAVE_WAIT",
     //In this state, you see persistence success
@@ -28,10 +28,10 @@ export class Room {
     }
 }
 
-export class Hallway extends Room {
-    public hallwayType: HallwayType;
-    public constructor(hallwayType: HallwayType, baseRoom: BaseRoom) {
+export class Closet extends Room {
+    public closetType: ClosetType;
+    public constructor(closetType: ClosetType, baseRoom: BaseRoom) {
         super(baseRoom);
-        this.hallwayType = hallwayType;
+        this.closetType = closetType;
     }
 }

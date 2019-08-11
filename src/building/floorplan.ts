@@ -1,4 +1,4 @@
-import {Room, Hallway, BaseRoom, HallwayType} from "./rooms";
+import {Room, Closet, BaseRoom, ClosetType} from "./rooms";
 import {Door} from "./doors";
 type FloorPlan = {
     [R in BaseRoom]: {
@@ -37,39 +37,38 @@ const baseRoomPlan: FloorPlan = {
     },
 };
 
-type HallPlan = {
-    [C in HallwayType]?: {
-        [D in Door]?: HallwayType
+type ClosetPlan = {
+    [C in ClosetType]?: {
+        [D in Door]?: ClosetType
     }
 }
 
-type HallEnds = {
-    [C in HallwayType]?: Set<Door>
+type ClosetExits = {
+    [C in ClosetType]?: Set<Door>
 }
 
-const hallPlan: HallPlan = {
-    [HallwayType.SAVE_WAIT]: {
-        [Door.SUCCESS]: HallwayType.SAVE_SUCCESS,
-        [Door.FAILURE]: HallwayType.SAVE_FAILURE,
+const closetConnections: ClosetPlan = {
+    [ClosetType.SAVE_WAIT]: {
+        [Door.SUCCESS]: ClosetType.SAVE_SUCCESS,
+        [Door.FAILURE]: ClosetType.SAVE_FAILURE,
     },
 };
 
-const terminals: HallEnds = {
-    [HallwayType.SAVE_SUCCESS]: new Set([Door.ACK]),
-    [HallwayType.SAVE_FAILURE]: new Set([Door.ACK]),
+const closetExits: ClosetExits = {
+    [ClosetType.SAVE_SUCCESS]: new Set([Door.ACK]),
+    [ClosetType.SAVE_FAILURE]: new Set([Door.ACK]),
 };
 
 export default function traverse(currentRoom: Room, door: Door): Room {
     const { baseRoom } = currentRoom;
-    if (currentRoom instanceof Hallway) {
-        const { hallwayType, baseRoom } = currentRoom;
-        if (hallPlan[hallwayType] && hallPlan[hallwayType][door]) {
-            return new Hallway(hallPlan[hallwayType][door], baseRoom);
+    if (currentRoom instanceof Closet) {
+        const { closetType, baseRoom } = currentRoom;
+        if (closetConnections[closetType] && closetConnections[closetType][door]) {
+            return new Closet(closetConnections[closetType][door], baseRoom);
         }
-        if (terminals[hallwayType] && terminals[hallwayType].has(door)) {
+        if (closetExits[closetType] && closetExits[closetType].has(door)) {
             return new Room(baseRoom);
         }
-        return new Room(baseRoom);
     } else if (baseRoomPlan[baseRoom][door]) {
         return new Room(baseRoomPlan[baseRoom][door]);
     }
