@@ -1,50 +1,50 @@
-import {UnaryTest} from '../generation/Test';
-import {integer, nonInteger} from '../generation/Input';
+import {UnaryTest} from "../generation/Test";
+import {integer, nonInteger} from "../generation/Input";
 
-import {positive, integer as integerValidator}  from '../../../src/utilities/validation/validators';
+import {positive, integer as integerValidator}  from "../../../src/utilities/validation/validators";
 
 const runs = 100;
 
-describe('positive', () => {
-    it('rejects zero', () => {
-        expect(() => positive(0)).toThrow();
+describe("positive", (): void => {
+    it("rejects zero", (): void => {
+        expect((): void => positive(0)).toThrow();
     });
 
-    UnaryTest([], integer(1, 1000000), (candidate) => {
-        it(`accepts positive integers (${candidate})`, () => {
+    UnaryTest([], integer(1, 1000000), (candidate): void => {
+        it(`accepts positive integers (${candidate})`, (): void => {
             positive(candidate); // Throws will fail the test.
         });
-    }, runs)
+    }, runs);
 
-    UnaryTest([], nonInteger(0.01, 1000000), (candidate) => {
-        it(`accepts positive floats (${candidate})`, () => {
+    UnaryTest([], nonInteger(0.01, 1000000), (candidate): void => {
+        it(`accepts positive floats (${candidate})`, (): void => {
             positive(candidate); // Throws will fail the test.
         });
-    }, runs)
+    }, runs);
 
-    UnaryTest([], integer(-1000000, 0), (candidate) => {
-        it(`rejects negative integers (${candidate})`, () => {
-            expect(() => positive(candidate)).toThrow();
+    UnaryTest([], integer(-1000000, 0), (candidate): void => {
+        it(`rejects negative integers (${candidate})`, (): void => {
+            expect((): void => positive(candidate)).toThrow();
         });
-    }, runs)
+    }, runs);
 
-    UnaryTest([], nonInteger(-1000000, 0), (candidate) => {
-        it(`rejects negative floats (${candidate})`, () => {
-            expect(() => positive(candidate)).toThrow();
+    UnaryTest([], nonInteger(-1000000, 0), (candidate): void => {
+        it(`rejects negative floats (${candidate})`, (): void => {
+            expect((): void => positive(candidate)).toThrow();
         });
-    }, runs)
-})
+    }, runs);
+});
 
-describe('integer', () => {
-    UnaryTest([], integer(-1000000, 1000000), (candidate) => {
-        it(`accepts integers (${candidate})`, () => {
+describe("integer", (): void => {
+    UnaryTest([], integer(-1000000, 1000000), (candidate): void => {
+        it(`accepts integers (${candidate})`, (): void => {
             integerValidator(candidate); // Throws will fail the test.
         });
-    }, runs)
+    }, runs);
 
-    UnaryTest([], nonInteger(-1000000, 1000000), (candidate) => {
-        it(`rejects floats (${candidate})`, () => {
-            expect(() => integerValidator(candidate)).toThrow();
+    UnaryTest([], nonInteger(-1000000, 1000000), (candidate): void => {
+        it(`rejects floats (${candidate})`, (): void => {
+            expect((): void => integerValidator(candidate)).toThrow();
         });
-    }, runs)
-})
+    }, runs);
+});
