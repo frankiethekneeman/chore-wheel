@@ -22,14 +22,14 @@ export enum ClosetType {
 }
 
 export class Room {
-    public baseRoom: BaseRoom;
+    public readonly baseRoom: BaseRoom;
     public constructor(baseRoom: BaseRoom) {
         this.baseRoom = baseRoom;
     }
 }
 
 export class Closet extends Room {
-    public closetType: ClosetType;
+    public readonly closetType: ClosetType;
     public constructor(closetType: ClosetType, baseRoom: BaseRoom) {
         super(baseRoom);
         this.closetType = closetType;
