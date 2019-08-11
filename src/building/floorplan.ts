@@ -6,6 +6,16 @@ type FloorPlan = {
     }
 }
 
+type ClosetPlan = {
+    [C in ClosetType]?: {
+        [D in Door]?: ClosetType
+    }
+}
+
+type ClosetExits = {
+    [C in ClosetType]?: Set<Door>
+}
+
 const baseRoomPlan: FloorPlan = {
     [BaseRoom.CONFIGURE_EXECUTORS]: {
         [Door.TO_EXECUTORS]: BaseRoom.CONFIGURE_EXECUTORS,
@@ -36,16 +46,6 @@ const baseRoomPlan: FloorPlan = {
         [Door.TO_CALENDAR]: BaseRoom.SEE_CALENDAR,
     },
 };
-
-type ClosetPlan = {
-    [C in ClosetType]?: {
-        [D in Door]?: ClosetType
-    }
-}
-
-type ClosetExits = {
-    [C in ClosetType]?: Set<Door>
-}
 
 const closetConnections: ClosetPlan = {
     [ClosetType.SAVE_WAIT]: {
