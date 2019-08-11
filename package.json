@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
+    "transpile": "tsc --build tsconfig.json",
     "lint": "eslint . --ext ts,d.ts,js",
     "lint-fix": "eslint . --ext ts,d.ts,js --fix",
     "validate": "npm t && npm run lint"

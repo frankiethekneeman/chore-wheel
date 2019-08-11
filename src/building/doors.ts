@@ -1,4 +1,4 @@
-export enum Action {
+export enum Door {
     // Transition to the CONFIGURE_EXECUTORS state
     TO_EXECUTORS = "TO_EXECUTORS",
     // Transition to the CONFIGURE_TASKS state
@@ -24,6 +24,8 @@ export enum Action {
     CONFIRM = "CONFIRM",
     // Cancel a risky action
     CANCEL = "CANCEL",
-
-
+    // System sees success in a Hallway task
+    SUCCESS = "SUCCESS",
+    // System sees failure in a Hallway task
+    FAILURE = "FAILURE",
 }
