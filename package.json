@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "lint": "eslint . --ext ts,d.ts,js"
+    "lint": "eslint . --ext ts,d.ts,js",
+    "lint-fix": "eslint . --ext ts,d.ts,js --fix",
+    "validate": "npm t && npm run lint"
   },
   "author": "Francis Sirizzotti",
   "license": "GPL-3.0",
