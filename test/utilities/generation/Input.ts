@@ -35,3 +35,10 @@ export function randomString(min: number, max: number): Generator<string> {
         return str().substring(0, length());
     };
 }
+
+export function oneOf<T>(options: T[]): Generator<T> {
+    const idx = integer(0, options.length);
+    return (): T => {
+        return options[idx()];
+    };
+}

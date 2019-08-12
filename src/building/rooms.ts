@@ -26,6 +26,9 @@ export class Room {
     public constructor(baseRoom: BaseRoom) {
         this.baseRoom = baseRoom;
     }
+    public name(): string {
+        return this.baseRoom;
+    }
 }
 
 export class Closet extends Room {
@@ -33,5 +36,9 @@ export class Closet extends Room {
     public constructor(closetType: ClosetType, baseRoom: BaseRoom) {
         super(baseRoom);
         this.closetType = closetType;
+    }
+
+    public name(): string { 
+        return this.closetType;
     }
 }

@@ -4,10 +4,11 @@
   "description": "An application to maintain a chore wheel",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
-    "transpile": "tsc --build tsconfig.json",
+    "coverage": "jest --no-cache --coverage",
     "lint": "eslint . --ext ts,d.ts,js",
     "lint-fix": "eslint . --ext ts,d.ts,js --fix",
+    "test": "jest",
+    "transpile": "tsc --build tsconfig.json",
     "validate": "npm t && npm run lint"
   },
   "author": "Francis Sirizzotti",
